@@ -3,19 +3,19 @@ SETLOCAL EnableDelayedExpansion
 
 SET /p JENKINS_SECRET=<C:\ProgramData\Docker\internal\secrets\jenkins
 
-IF "%LABELS%" == "" (
+IF NOT DEFINED LABELS (
     SET LABELS=docker
 )
 
-IF "%EXECUTORS%" == "" (
+IF NOT DEFINED EXECUTORS (
     SET EXECUTORS=3
 )
 
-IF "%FSROOT%" == "" (
+IF NOT DEFINED FSROOT (
     SET FSROOT=C:\tmp\jenkins
 )
 
-IF "%NODENAMEPREFIX%" == "" (
+IF NOT DEFINED NODENAMEPREFIX (
     SET NODENAMEPREFIX=docker-
 )
 
