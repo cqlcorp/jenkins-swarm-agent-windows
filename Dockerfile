@@ -1,5 +1,5 @@
 # escape=`
-FROM openjdk:8-windowsservercore
+FROM openjdk:8-nanoserver
 
 MAINTAINER Chad Gilbert <chad.gilbert@cqlcorp.com>
 
