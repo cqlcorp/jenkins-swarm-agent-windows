@@ -1,7 +1,7 @@
 @ECHO OFF
 SETLOCAL EnableDelayedExpansion
 
-SET /p JENKINS_SECRET=<C:\ProgramData\Docker\internal\secrets\jenkins
+SET /p JENKINS_SECRET=<C:\ProgramData\Docker\secrets\jenkins
 
 IF NOT DEFINED LABELS (
     SET LABELS=docker
