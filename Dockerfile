@@ -18,9 +18,9 @@ ARG GIT_VERSION
 ARG GIT_SHA256
 ARG DOCKER_VERSION
 
-RUN $ErrorActionPreference = 'Stop'; \
-    $ProgressPreference = 'SilentlyContinue' ;\
-    Invoke-WebRequest $('https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/' + $Env:JENKINS_SWARM_CLIENT_VERSION + '/swarm-client-' + $Env:JENKINS_SWARM_CLIENT_VERSION + '.jar') -OutFile 'swarm-client.jar' -UseBasicParsing ; \
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN Invoke-WebRequest $('https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/' + $Env:JENKINS_SWARM_CLIENT_VERSION + '/swarm-client-' + $Env:JENKINS_SWARM_CLIENT_VERSION + '.jar') -OutFile 'swarm-client.jar' -UseBasicParsing ; \
     Invoke-WebRequest -UseBasicParsing $('https://github.com/git-for-windows/git/releases/download/v' + $Env:GIT_VERSION + '.windows.1/MinGit-' + $Env:GIT_VERSION + '-64-bit.zip') -OutFile git.zip; \
     if ((Get-FileHash git.zip -Algorithm sha256).Hash -ne $env:GIT_SHA256) {exit 1} ; \
     Expand-Archive git.zip -DestinationPath C:\git; \
